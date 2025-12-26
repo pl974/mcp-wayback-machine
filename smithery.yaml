@@ -1,8 +1,11 @@
+runtime: container
+
+build:
+  dockerfile: Dockerfile
+  dockerBuildPath: .
+
 startCommand:
-  type: stdio
-  configSchema: {}
-  commandFunction: |-
-    (config) => ({
-      "command": "npx",
-      "args": ["-y", "mcp-wayback-machine@latest"]
-    })
+  type: http
+  configSchema:
+    type: object
+    properties: {}

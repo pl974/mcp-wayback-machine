@@ -6,7 +6,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install all dependencies (including dev for build)
-RUN npm ci
+RUN npm ci --ignore-scripts
 
 # Copy source
 COPY . .
@@ -23,9 +23,11 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install production dependencies only
-RUN npm ci --only=production
+RUN npm ci --only=production --ignore-scripts
 
 # Copy built files from builder
 COPY --from=builder /app/dist ./dist
 
-CMD ["node", "dist/index.js"]
+EXPOSE 8081
+
+CMD ["node", "dist/http-server.js"]
