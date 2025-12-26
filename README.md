@@ -1,5 +1,6 @@
 # MCP Wayback Machine Server
 
+[![smithery badge](https://smithery.ai/badge/thib/mcp-wayback-machine)](https://smithery.ai/server/thib/mcp-wayback-machine)
 [![npm version](https://img.shields.io/npm/v/mcp-wayback-machine.svg)](https://www.npmjs.com/package/mcp-wayback-machine)
 [![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 [![npm downloads](https://img.shields.io/npm/dm/mcp-wayback-machine.svg)](https://www.npmjs.com/package/mcp-wayback-machine)
