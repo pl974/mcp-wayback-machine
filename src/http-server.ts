@@ -40,22 +40,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 			{
 				name: 'save_url',
 				description: 'Save a URL to the Wayback Machine',
-				inputSchema: zodToJsonSchema(SaveUrlSchema),
+				inputSchema: zodToJsonSchema(SaveUrlSchema as any),
 			},
 			{
 				name: 'get_archived_url',
 				description: 'Retrieve an archived version of a URL',
-				inputSchema: zodToJsonSchema(GetArchivedUrlSchema),
+				inputSchema: zodToJsonSchema(GetArchivedUrlSchema as any),
 			},
 			{
 				name: 'search_archives',
 				description: 'Search the Wayback Machine archives for a URL',
-				inputSchema: zodToJsonSchema(SearchArchivesSchema),
+				inputSchema: zodToJsonSchema(SearchArchivesSchema as any),
 			},
 			{
 				name: 'check_archive_status',
 				description: 'Check if a URL has been archived',
-				inputSchema: zodToJsonSchema(CheckArchiveStatusSchema),
+				inputSchema: zodToJsonSchema(CheckArchiveStatusSchema as any),
 			},
 		],
 	};
