@@ -1,6 +1,7 @@
+version: 1
+
 build:
   dockerfile: Dockerfile
-  dockerBuildPath: .
 
 startCommand:
   type: stdio
