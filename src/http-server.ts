@@ -8,12 +8,48 @@ import {
 	McpError,
 } from '@modelcontextprotocol/sdk/types.js';
 import express from 'express';
-import { zodToJsonSchema } from 'zod-to-json-schema';
 
 import { GetArchivedUrlSchema, getArchivedUrl } from './tools/retrieve.js';
 import { SaveUrlSchema, saveUrl } from './tools/save.js';
 import { SearchArchivesSchema, searchArchives } from './tools/search.js';
 import { CheckArchiveStatusSchema, checkArchiveStatus } from './tools/status.js';
+
+// JSON Schemas for tools
+const saveUrlJsonSchema = {
+	type: 'object',
+	properties: {
+		url: { type: 'string', description: 'The URL to save to the Wayback Machine' }
+	},
+	required: ['url']
+};
+
+const getArchivedUrlJsonSchema = {
+	type: 'object',
+	properties: {
+		url: { type: 'string', description: 'The URL to retrieve from the Wayback Machine' },
+		timestamp: { type: 'string', description: 'Optional timestamp (YYYYMMDDhhmmss format)' }
+	},
+	required: ['url']
+};
+
+const searchArchivesJsonSchema = {
+	type: 'object',
+	properties: {
+		url: { type: 'string', description: 'The URL to search archives for' },
+		from: { type: 'string', description: 'Start date (YYYYMMDD format)' },
+		to: { type: 'string', description: 'End date (YYYYMMDD format)' },
+		limit: { type: 'number', description: 'Maximum number of results', default: 10 }
+	},
+	required: ['url']
+};
+
+const checkArchiveStatusJsonSchema = {
+	type: 'object',
+	properties: {
+		url: { type: 'string', description: 'The URL to check archive status for' }
+	},
+	required: ['url']
+};
 
 const PORT = parseInt(process.env.PORT || '8081', 10);
 const app = express();
@@ -40,22 +76,22 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 			{
 				name: 'save_url',
 				description: 'Save a URL to the Wayback Machine',
-				inputSchema: zodToJsonSchema(SaveUrlSchema as any),
+				inputSchema: saveUrlJsonSchema,
 			},
 			{
 				name: 'get_archived_url',
 				description: 'Retrieve an archived version of a URL',
-				inputSchema: zodToJsonSchema(GetArchivedUrlSchema as any),
+				inputSchema: getArchivedUrlJsonSchema,
 			},
 			{
 				name: 'search_archives',
 				description: 'Search the Wayback Machine archives for a URL',
-				inputSchema: zodToJsonSchema(SearchArchivesSchema as any),
+				inputSchema: searchArchivesJsonSchema,
 			},
 			{
 				name: 'check_archive_status',
 				description: 'Check if a URL has been archived',
-				inputSchema: zodToJsonSchema(CheckArchiveStatusSchema as any),
+				inputSchema: checkArchiveStatusJsonSchema,
 			},
 		],
 	};
