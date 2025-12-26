@@ -5,6 +5,8 @@ import {
 	CallToolRequestSchema,
 	ErrorCode,
 	ListToolsRequestSchema,
+	ListResourcesRequestSchema,
+	ListPromptsRequestSchema,
 	McpError,
 } from '@modelcontextprotocol/sdk/types.js';
 import express from 'express';
@@ -65,6 +67,8 @@ const server = new Server(
 	{
 		capabilities: {
 			tools: {},
+			resources: {},
+			prompts: {},
 		},
 	},
 );
@@ -95,6 +99,16 @@ server.setRequestHandler(ListToolsRequestSchema, async () => {
 			},
 		],
 	};
+});
+
+// Handle resources listing (empty)
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+	return { resources: [] };
+});
+
+// Handle prompts listing (empty)
+server.setRequestHandler(ListPromptsRequestSchema, async () => {
+	return { prompts: [] };
 });
 
 // Handle tool execution
