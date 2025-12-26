@@ -28,6 +28,4 @@ RUN npm ci --only=production --ignore-scripts
 # Copy built files from builder
 COPY --from=builder /app/dist ./dist
 
-EXPOSE 8081
-
-CMD ["node", "dist/http-server.js"]
+CMD ["node", "dist/index.js"]
