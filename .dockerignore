@@ -1,0 +1,8 @@
+node_modules
+.git
+.gitignore
+.husky
+*.md
+*.test.ts
+coverage
+.nyc_output
