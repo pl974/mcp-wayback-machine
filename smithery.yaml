@@ -1,15 +1,8 @@
 startCommand:
   type: stdio
-  configSchema:
-    type: object
-    properties: {}
-  commandFunction: |
+  configSchema: {}
+  commandFunction: |-
     (config) => ({
-      command: 'node',
-      args: ['dist/index.js'],
-      env: {}
+      "command": "npx",
+      "args": ["-y", "mcp-wayback-machine@latest"]
     })
-
-build:
-  dockerfile: Dockerfile
-  dockerBuildPath: .
